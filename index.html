@@ -1453,7 +1453,7 @@ const BREATH_RELEASE_SECONDS =
 // ・息が止まったら早めに終了する
 // ための端末別判定。
 const IOS_BREATH_RELEASE_SECONDS =
-    0.25;
+    0.32;
 
 const IOS_BREATH_REFERENCE_BUILD_SECONDS =
     0.22;
@@ -6322,14 +6322,14 @@ function holdBreathIOS(
 
     else {
 
-        // 1フレームごとに基準値を約6%ずつ下げる。
+        // 1フレームごとに基準値を約10%ずつ下げる。
         // 現在音量の方が大きい場合は、その音量へ戻す。
         // これにより「ふー」が時間とともに減衰しても
         // 持続判定が追従できるようにする。
         breathReferenceVolume =
             Math.max(
                 result.volume,
-                breathReferenceVolume * 0.94
+                breathReferenceVolume * 0.90
             );
 
     }
@@ -6338,7 +6338,7 @@ function holdBreathIOS(
     const relativeThreshold =
         breathReferenceVolume
         *
-        0.22;
+        0.16;
 
 
     const noiseThreshold =
